@@ -3,6 +3,22 @@ import json
 import base64
 from datetime import datetime
 import os
+import logging
+import sys
+
+LOG_LEVEL = logging.DEBUG
+LOG_FILE = "civilian_client.log"
+
+logging.basicConfig(
+    level=LOG_LEVEL,
+    format="%(asctime)s | %(levelname)-8s | %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+    handlers=[
+        logging.FileHandler(LOG_FILE),
+        logging.StreamHandler(sys.stdout)
+    ]
+)
+logger = logging.getLogger("CivilianClient")
 
 SERVER_IP = "172.20.10.3"   # 🔑 LAN IP OF SERVER COMPUTER
 SERVER_PORT = 4              # Must match server
@@ -32,7 +48,9 @@ async def main():
     # ── Connect to server ────────────────────────────────────────────────────
     try:
         reader, writer = await asyncio.open_connection(SERVER_IP, SERVER_PORT)
+        logger.info(f"Connected to server {SERVER_IP}:{SERVER_PORT}")
     except Exception as e:
+        logger.error(f"Failed to connect to server: {e}")
         print(f"Cannot connect to server: {e}")
         return
 
@@ -40,6 +58,7 @@ async def main():
     name = await ainput("Enter your name: ")
     writer.write((name.strip() + "\n").encode())
     await writer.drain()
+    logger.info(f"Registered with name: {name.strip()}")
 
     # ── Menu loop ────────────────────────────────────────────────────────────
     while True:
@@ -56,6 +75,7 @@ async def main():
                 "timestamp": datetime.now().timestamp(),
                 "payload": {"description": loc.strip()},
             })
+            logger.info(f"Location sent: {loc.strip()}")
             print("Location sent.")
 
         elif choice == "2":
@@ -67,6 +87,7 @@ async def main():
             status_choice = (await ainput("> ")).strip()
 
             if status_choice not in STATUS_OPTIONS:
+                logger.warning(f"Invalid status choice: {status_choice}")
                 print("Invalid choice, status not sent.")
                 continue
 
@@ -82,16 +103,19 @@ async def main():
                     "details": extra if extra else None,
                 },
             })
+            logger.info(f"Status sent: [{status_choice}] {status_label} | Details: {extra if extra else 'None'}")
             print(f"Status sent: {status_label}")
 
         elif choice == "3":
             raw_path = (await ainput("Image path: ")).strip()
             path = os.path.expanduser(raw_path)
             if not os.path.exists(path):
+                logger.warning(f"File not found: {path}")
                 print(f"File not found: {path}")
                 print("Tip: On Windows: C:\\Users\\YourName\\Downloads\\photo.jpg")
                 print("     On Mac/Linux: ~/Downloads/photo.jpg")
                 continue
+            logger.info(f"Sending image: {os.path.basename(path)}")
             print("Sending image, please wait...")
             with open(path, "rb") as f:
                 encoded = base64.b64encode(f.read()).decode()
@@ -101,17 +125,21 @@ async def main():
                 "timestamp": datetime.now().timestamp(),
                 "payload": {"data": encoded, "filename": os.path.basename(path), "ext": ext},
             })
+            logger.info(f"Image sent successfully: {os.path.basename(path)}")
             print(f"Image sent: {os.path.basename(path)}")
 
         elif choice == "4":
+            logger.info("User exited the application")
             print("Exiting...")
             break
 
         else:
+            logger.warning(f"Invalid menu choice: {choice}")
             print("Invalid choice, try again.")
 
     writer.close()
     await writer.wait_closed()
+    logger.info("Connection closed")
 
 
 if __name__ == "__main__":
