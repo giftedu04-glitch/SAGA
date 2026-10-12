@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#0f3460;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="pulseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e94560;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#c0392b;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="linkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#e0e0e0;stop-opacity:1"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Background rounded rect -->
+  <rect width="512" height="512" rx="110" ry="110" fill="url(#bgGrad)"/>
+
+  <!-- Outer pulse rings -->
+  <circle cx="256" cy="230" r="175" fill="none" stroke="#e94560" stroke-width="3" opacity="0.15"/>
+  <circle cx="256" cy="230" r="145" fill="none" stroke="#e94560" stroke-width="3" opacity="0.25"/>
+
+  <!-- Red emergency circle -->
+  <circle cx="256" cy="230" r="110" fill="url(#pulseGrad)" filter="url(#shadow)"/>
+
+  <!-- White cross / medical symbol -->
+  <rect x="226" y="170" width="60" height="120" rx="12" fill="white" opacity="0.95"/>
+  <rect x="196" y="200" width="120" height="60" rx="12" fill="white" opacity="0.95"/>
+
+  <!-- Signal arcs (communication theme) -->
+  <path d="M 140 130 A 130 130 0 0 1 372 130"
+        fill="none" stroke="#e94560" stroke-width="10"
+        stroke-linecap="round" opacity="0.6" filter="url(#glow)"/>
+  <path d="M 110 95 A 165 165 0 0 1 402 95"
+        fill="none" stroke="#e94560" stroke-width="7"
+        stroke-linecap="round" opacity="0.35" filter="url(#glow)"/>
+
+  <!-- App name -->
+  <text x="256" y="395"
+        font-family="'Segoe UI', Arial, sans-serif"
+        font-size="56" font-weight="700"
+        text-anchor="middle" fill="url(#linkGrad)"
+        letter-spacing="2">RescueLink</text>
+
+  <!-- Tagline -->
+  <text x="256" y="435"
+        font-family="'Segoe UI', Arial, sans-serif"
+        font-size="24" font-weight="400"
+        text-anchor="middle" fill="#8892a4"
+        letter-spacing="3">EMERGENCY  •  CONNECT</text>
+</svg>

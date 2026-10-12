@@ -1,0 +1,27 @@
+2026-02-24 14:12:01 | DEBUG    | Using proactor: IocpProactor
+2026-02-24 14:12:22 | ERROR    | Failed to connect to server: [WinError 121] The semaphore timeout period has expired
+2026-02-24 14:12:33 | DEBUG    | Using proactor: IocpProactor
+2026-02-24 14:12:54 | ERROR    | Failed to connect to server: [WinError 121] The semaphore timeout period has expired
+2026-02-24 14:15:25 | DEBUG    | Using proactor: IocpProactor
+2026-02-24 14:15:27 | ERROR    | Failed to connect to server: [WinError 1225] The remote computer refused the network connection
+2026-02-24 14:16:12 | DEBUG    | Using proactor: IocpProactor
+2026-02-24 14:16:14 | ERROR    | Failed to connect to server: [WinError 1225] The remote computer refused the network connection
+2026-02-24 14:16:33 | DEBUG    | Using proactor: IocpProactor
+2026-02-24 14:16:35 | ERROR    | Failed to connect to server: [WinError 1225] The remote computer refused the network connection
+2026-02-24 14:32:06 | DEBUG    | Using proactor: IocpProactor
+2026-02-24 14:32:08 | ERROR    | Failed to connect to server: [WinError 1225] The remote computer refused the network connection
+2026-02-24 14:32:33 | DEBUG    | Using proactor: IocpProactor
+2026-02-24 14:32:35 | ERROR    | Failed to connect to server: [WinError 1225] The remote computer refused the network connection
+2026-02-24 14:37:11 | DEBUG    | Using proactor: IocpProactor
+2026-02-24 14:37:13 | ERROR    | Failed to connect to server: [WinError 1225] The remote computer refused the network connection
+2026-02-24 14:42:59 | DEBUG    | Using proactor: IocpProactor
+2026-02-24 14:42:59 | INFO     | Connected to server 172.20.10.4:8252
+2026-02-24 14:43:20 | INFO     | Registered with name: gift
+2026-02-24 14:50:27 | DEBUG    | Using proactor: IocpProactor
+2026-02-24 14:50:27 | INFO     | Connected to server 172.20.10.4:8252
+2026-02-24 14:50:39 | INFO     | Registered with name: Gift
+2026-02-24 14:52:24 | DEBUG    | Using proactor: IocpProactor
+2026-02-24 14:52:25 | INFO     | Connected to server 172.20.10.4:8252
+2026-02-24 14:52:30 | INFO     | Registered with name: Gift
+2026-02-24 14:52:41 | INFO     | Location sent: innovation studio
+2026-02-24 14:52:55 | INFO     | Status sent: [3] Injured, cannot move | Details: i need legging
